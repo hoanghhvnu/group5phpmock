@@ -15,15 +15,31 @@ class user_model extends CI_Model{
     public function getAll(){
         return $this->db->get($this->_table)->result_array();
     } // end listUser();
-    public function insert($data){
-        $this->db->insert($this->_table,$data);
-    } // end insert()
+     // end insert()
 
     public function getOnce($id){
         $this->db->where("usr_id = $id");
         return $this->db->get($this->_table)->row_array(); 
     } // end getOnce
 
+    // HoangHH
+    public function checkUserName($usr_name){
+        $this->db->where("usr_name ='" .  $usr_name. "'" );
+        $NumRow = $this->db->get($this->_table)->num_rows(); 
+        if($NumRow >= 1){
+            return FALSE;
+        }
+        return TRUE;
+    } // end checkUserName()
+
+    public function checkEmail($usr_email){
+        $this->db->where("usr_email ='" .  $usr_email . "'" );
+        $NumRow = $this->db->get($this->_table)->num_rows(); 
+        if($NumRow >= 1){
+            return FALSE;
+        }
+        return TRUE;
+    } // end checkEmail()
 
     public function count_all(){
         $this->db->from($this->_table);
@@ -71,8 +87,9 @@ class user_model extends CI_Model{
     public function is_Validate($dataUser){
             $data = $this->db->select()->where('usr_name',$dataUser['username'])->where('usr_password',$dataUser['password'])           
             ->get($this->_table)->row_array();
+            // echo $data;
             if(count($data)>0){
-                return $data;
+                return $dataUser;
             }else{
                 return false;
             }  

@@ -1,4 +1,4 @@
-<?php $this->load->view('main/mainhead')?>
+
 <div id = 'center'>
     <h3>Danh sách các thương hiệu</h3>
     <div id = 'modlistbran'>
@@ -11,6 +11,8 @@
         
         <input type = 'submit' name = 'btnok' value = 'Gửi'>
     </form>
+    <a  href='<?php echo base_url("administrator/bran/search");?>'>
+                <button style = "float:right;">Search Brand</button></a>
         <?php echo form_fieldset_close();;?>
     </div>
 
@@ -59,4 +61,3 @@
     </div>
     
 </div> <!-- end div id = center -->
-<?php $this->load->view('main/mainfoot')?>
