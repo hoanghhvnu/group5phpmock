@@ -1,5 +1,5 @@
 
-<?php $this->load->view('main/mainhead')?>
+
 <h3>Insert User</h3>
 <?php
     $this->load->helper('form');
@@ -21,6 +21,9 @@
     $user['value'] = set_value('usr_name');
 
     echo form_input($user);
+    if(isset($errorUser)){
+        echo "<span class = 'error'>" . $errorUser . "</span>";
+    }
     echo form_error('usr_name') . "<br/>";
 
     echo form_label("Password");
@@ -47,6 +50,9 @@
         );
     $email['value'] = set_value('usr_email');
     echo form_input($email);
+    if(isset($errorEmail)){
+        echo "<span class = 'error'>" . $errorEmail . "</span>";
+    }
     echo form_error('usr_email') . "<br/>";
 
     echo form_label("Address");
@@ -107,4 +113,4 @@
 
     echo form_fieldset_close();
     ?>
-    <?php $this->load->view('main/mainfoot')?>
+    

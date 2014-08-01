@@ -7,6 +7,9 @@ class bran extends CI_Controller{
         $this->load->model("bran_model");
         $this->load->library('pagination');
         session_start();
+        if( ! isset($_SESSION['user'])){
+            redirect(base_url("administrator/user/login"));
+        }
 
     } // end __construct
 
@@ -73,7 +76,8 @@ class bran extends CI_Controller{
         $data['show_all'] = $_SESSION['show_all'];
         $data['column'] = $column;
 
-        $this->load->view("bran/listbran",$data);
+        $data['template'] = "bran/listbran";
+        $this->load->view("layout/layout",$data);
         // $this->load->view("main/main");
 
     } // end class list bran
@@ -93,7 +97,7 @@ class bran extends CI_Controller{
             
        
             if($this->form_validation->run()){
-                $listall=$this->bran_model->getAll();
+                $listall=$this->bran_model->get_order();
                 
              foreach ($listall as $row) {
                 if (in_array(trim($updateName),$row)&& ($row['bran_id']!=$id)) $data['errorName']="Đã tồn tại";
@@ -135,10 +139,13 @@ class bran extends CI_Controller{
         if(isset($_POST["btnSearch"])){
             $search_term = $this->input->post("txtSearch");
             $data['result'] = $this->bran_model->get_results($search_term);
-            $this->load->view("administrator/bran/searchResult",$data);
+            $data['template'] = "bran/searchResult";
+            $this->load->view("layout/layout",$data);
             // print_r($data);
         }else{
-            $this->load->view("administrator/bran/searchView");
+            $data['template'] = "bran/searchView";
+            $this->load->view("layout/layout",$data);
+
         }
     } // end search()
 } // end class bran

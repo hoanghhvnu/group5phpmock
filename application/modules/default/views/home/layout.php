@@ -1,10 +1,7 @@
-<?php
-    $this->load->view("top");
-    $this->load->view("left");
-    $this->load->view($template);
-    $this->load->view("right");
-    $this->load->view("footer");
-    	
-		
-        
-    
+<?php 
+$this->load->view('layout/header');
+$this->load->view('layout/left_content');
+$this->load->view("$template");
+$this->load->view('layout/right_content');
+$this->load->view('layout/footer');
+?>
