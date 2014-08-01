@@ -1,8 +1,4 @@
-<style>
-    button span{
-        vertical-align: middle;
-    }
-</style>
+
 <div id = 'center'>
     <h3>List Product </h3>
     
@@ -18,12 +14,14 @@
     </div>
     <div style="clear:both;margin:5px;padding: 5px">
     <a  href='<?php echo base_url("administrator/product/searchproduct");?>'>
+
                 <button >Search Product</button></a><br/>
     <a  href='<?php echo base_url("administrator/product/insertProduct");?>'>
                 <button ><img width = '15' height='15' src='<?php echo base_url("public/images/green-plus.png");?>'><span>Insert Product</span></button></a>        
 
     </div>
     
+
 
     <div id = 'listproduct'>
       <?php  echo "Trang: ";
@@ -48,6 +46,7 @@
 
         </tr>
         <?php
+
             $ListBrandKeyValue = array();
             foreach ($ListBrand as $key => $value) {
                 $ListBrandKeyValue[$value['bran_id']] = $value['bran_name'];
@@ -84,6 +83,7 @@
                     </tr>    
                 <?php endforeach; ?>
             <?php
+
         } // end if
         ?>
     </table>
